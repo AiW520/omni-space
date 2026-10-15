@@ -1,0 +1,13 @@
+data/*
+!data/db-config.example.json
+*.tmp
+node_modules/
+generated-media/
+docx-review/
+/*.png
+.env
+.env.*
+!.env.example
+*.log
+*.pem
+*.key

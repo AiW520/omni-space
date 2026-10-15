@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d0f12" />
+    <title>OMNI SPACE | 可执行无限空间</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span></div>
+          <div class="brand-name">OMNI <strong>SPACE</strong></div>
+          <div class="project-switcher" id="projectSwitcher" role="button" tabindex="0" aria-label="打开项目切换器" aria-expanded="false">
+            <span class="project-dot"></span>
+            <span>校园 AI 服务</span>
+            <span class="chevron">⌄</span>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <div class="sync-status"><span class="pulse-dot"></span> 本地</div>
+          <button class="language-button" id="languageButton" aria-label="切换语言">中 / EN</button>
+          <button class="topbar-icon" aria-label="打开动态">◌</button>
+          <button class="topbar-icon" aria-label="打开评论">⌁</button>
+          <button class="share-button" id="shareButton"><span>↗</span> 分享</button>
+          <button class="run-button" id="runButton"><span class="play-glyph">▶</span> 运行</button>
+          <button class="topbar-icon" id="modelConfigButton" aria-label="打开模型配置">⚙</button>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <aside class="mode-rail" aria-label="工作模式">
+          <div class="rail-group">
+            <button class="mode-button active" data-mode="canvas" aria-label="画布"><span class="mode-icon">⌘</span><span>画布</span></button>
+            <button class="mode-button" data-mode="3d" aria-label="3D 场景"><span class="mode-icon cube">◇</span><span>3D 场景</span></button>
+            <button class="mode-button" data-mode="build" aria-label="代码与应用"><span class="mode-icon">⌬</span><span>代码与应用</span></button>
+            <button class="mode-button" data-mode="web" aria-label="HTML 与网页"><span class="mode-icon">▤</span><span>HTML / 网页</span></button>
+            <button class="mode-button" data-mode="media" aria-label="图片与素材"><span class="mode-icon">▧</span><span>图片</span></button>
+            <button class="mode-button" data-mode="video" aria-label="视频"><span class="mode-icon">▹</span><span>视频</span></button>
+            <button class="mode-button" data-mode="data" aria-label="数据与图表"><span class="mode-icon">▥</span><span>数据与图表</span></button>
+            <button class="mode-button" data-mode="inspector" aria-label="项目审查"><span class="mode-icon">⌁</span><span>项目审查</span></button>
+            <button class="mode-button" data-mode="agents" aria-label="AI Agent"><span class="mode-icon">✦</span><span>AI Agent</span></button>
+            <button class="mode-button" data-mode="files" aria-label="文件"><span class="mode-icon">□</span><span>文件</span></button>
+          </div>
+          <div class="rail-group rail-bottom">
+            <button class="mode-button subtle" data-mode="history" aria-label="历史记录"><span class="mode-icon">↺</span><span>历史记录</span></button>
+            <button class="avatar-button" id="accountButton" aria-label="打开账户管理">访客</button>
+          </div>
+        </aside>
+
+        <main class="main-stage">
+          <div class="stage-toolbar">
+            <div class="breadcrumb"><span id="viewLabel">画布</span><span class="slash">/</span><span class="muted">项目图谱</span></div>
+            <div class="toolbar-actions">
+              <button class="tool-button" id="zoomOut" aria-label="缩小画布">−</button>
+              <span class="zoom-value" id="zoomValue">100%</span>
+              <button class="tool-button" id="zoomIn" aria-label="放大画布">+</button>
+              <span class="divider"></span>
+              <button class="tool-button" id="fitCanvas" aria-label="适配画布">⌗</button>
+              <button class="tool-button" id="toggleGrid" aria-label="切换网格">⋮</button>
+              <button class="command-button" id="commandButton"><span class="command-key">⌘</span>K <span class="muted">命令</span></button>
+            </div>
+          </div>
+
+          <section class="canvas-area" id="canvasArea" aria-label="项目画布">
+            <div class="canvas-grid"></div>
+            <div class="canvas-content" id="canvasContent">
+              <div class="canvas-title-block">
+                <div class="eyebrow"><span class="eyebrow-dot"></span> 项目图谱 · V24</div>
+                <h1>校园 AI 服务</h1>
+                <p>一个空间，多种输出。从同一份源内容完成构建、测试、演示和发布。</p>
+              </div>
+
+              <svg class="connectors" viewBox="0 0 1040 780" preserveAspectRatio="none" aria-hidden="true">
+                <path data-from="项目目标" data-to="用户流程" />
+                <path data-from="用户流程" data-to="网页应用" />
+                <path data-from="用户流程" data-to="校园使用情况" />
+                <path data-from="网页应用" data-to="3D 场景" />
+                <path data-from="3D 场景" data-to="演示文稿" />
+                <path class="media-connector" data-from="媒体集合" data-to="media-output-bundle" />
+              </svg>
+
+              <article class="graph-node goal-node selectable" data-node="项目目标">
+                <div class="node-kicker violet">项目目标 <span class="node-id">T-01</span></div>
+                <h2>校园 AI 服务</h2>
+                <p>一个空间 · 多种输出</p>
+                <div class="node-footer"><span class="status-chip green">本地</span><span>所有者 / 你</span></div>
+              </article>
+
+              <article class="graph-node flow-node selectable" data-node="用户流程">
+                <div class="node-kicker cyan">用户流程 <span class="node-id">F-02</span></div>
+                <div class="flow-step">登录 <span>↗</span></div>
+                <div class="flow-step">询问 AI <span>↗</span></div>
+                <div class="flow-step">执行操作 <span>↗</span></div>
+                <div class="node-footer"><span>WorkflowNode</span><span class="status-chip violet-chip">运行</span></div>
+              </article>
+
+              <article class="graph-node app-node selectable" data-node="网页应用">
+                <div class="node-kicker blue">网页应用 <span class="node-id">W-04</span></div>
+                <div class="app-preview">
+                  <div class="mini-brand"><span class="mini-orb"></span> 校园 / 首页</div>
+                  <div class="mini-copy">让校园生活<br /><strong>更容易找到方向。</strong></div>
+                  <div class="mini-button">询问 OMNI <span>→</span></div>
+                </div>
+                <div class="node-footer"><span class="status-chip green">运行中</span><span>WebAppNode</span></div>
+              </article>
+
+              <article class="graph-node data-node selectable" data-node="校园使用情况">
+                <div class="node-kicker cyan">数据 <span class="node-id">D-07</span></div>
+                <h2>72.4% <span>活跃用户</span></h2>
+                <div class="data-line"><span style="width: 78%"></span></div>
+                <div class="data-meta"><span>校园使用情况</span><span>+12.6% ↗</span></div>
+              </article>
+
+              <article class="graph-node scene-node selectable" data-node="3D 场景">
+                <div class="node-kicker violet">3D 场景 <span class="node-id">3D-03</span></div>
+                <div class="scene-visual"><div class="scene-building one"></div><div class="scene-building two"></div><div class="scene-building three"></div><div class="scene-sun"></div></div>
+                <div class="node-footer"><span>校园中心</span><span>2 个灯光 · 5 个对象</span></div>
+              </article>
+
+              <article class="graph-node presentation-node selectable" data-node="演示文稿">
+                <div class="node-kicker amber">演示文稿 <span class="node-id">P-09</span></div>
+                <h2>10 个场景</h2>
+                <p>HTML · 16:9 · 可交互</p>
+                <button class="node-action" id="openPresent">打开演示 <span>→</span></button>
+                <div class="node-footer"><span class="status-chip amber-chip">草稿</span><span>已关联源内容</span></div>
+              </article>
+
+              <article class="graph-node media-node selectable" data-node="媒体集合">
+                <div class="node-kicker pink">媒体集合 <span class="node-id">M-12</span></div>
+                <div class="media-thumb"><div class="media-horizon"></div><div class="media-mountain a"></div><div class="media-mountain b"></div><div class="media-sun"></div></div>
+                <div class="media-copy"><strong>发布视觉系统</strong><span>等待媒体资产</span><small>图片 / 视频 · 本地预览</small></div>
+              </article>
+
+              <div class="selection-ring" id="selectionRing" aria-hidden="true"></div>
+            </div>
+            <div class="canvas-minimap"><div class="mini-map-grid"></div><span class="mini-map-viewport"></span><span class="mini-map-label">项目地图</span></div>
+            <div class="canvas-status"><span class="pulse-dot"></span> 所有更改已保存 <span class="status-separator">·</span> 8 个本地节点</div>
+          </section>
+          <section class="mode-workspace" id="modeWorkspace" hidden aria-live="polite"></section>
+        </main>
+
+        <aside class="ai-panel" aria-label="AI 团队面板">
+          <div class="panel-heading">
+            <div><div class="eyebrow">AI 操作系统</div><h2>AI 团队</h2><p>当前空间有 6 个 Agent</p></div>
+            <button class="panel-icon" aria-label="配置 AI 团队">⚙</button>
+          </div>
+          <div class="agent-list">
+            <button class="agent-card selected-agent" data-agent="Builder">
+              <span class="agent-avatar builder">✦</span><span class="agent-copy"><strong>Builder</strong><small>本地配置 · 未执行</small></span><span class="agent-state working">配置</span>
+            </button>
+            <button class="agent-card" data-agent="Designer">
+              <span class="agent-avatar designer">✧</span><span class="agent-copy"><strong>Designer</strong><small>本地配置 · 未执行</small></span><span class="agent-state design">配置</span>
+            </button>
+            <button class="agent-card" data-agent="Inspector">
+              <span class="agent-avatar inspector">⌁</span><span class="agent-copy"><strong>Inspector</strong><small>本地规则审查</small></span><span class="agent-state audit">本地</span>
+            </button>
+            <button class="agent-card" data-agent="Tester">
+              <span class="agent-avatar tester">✓</span><span class="agent-copy"><strong>Tester</strong><small>本地配置 · 未执行</small></span><span class="agent-state test">配置</span>
+            </button>
+            <button class="agent-card" data-agent="Presenter">
+              <span class="agent-avatar presenter">◈</span><span class="agent-copy"><strong>Presenter</strong><small>本地配置 · 未执行</small></span><span class="agent-state present">配置</span>
+            </button>
+            <button class="agent-card" data-agent="Media Director">
+              <span class="agent-avatar media">✳</span><span class="agent-copy"><strong>Media Director</strong><small>本地配置 · 未执行</small></span><span class="agent-state waiting">配置</span>
+            </button>
+          </div>
+
+          <div class="panel-section provider-section">
+            <div class="section-label">外部供应商 <button class="section-action" id="providerConfigButton">管理</button></div>
+            <button class="provider-row" data-provider="image"><span class="provider-logo image-logo">◉</span><span><strong>图片生成</strong><small>gpt-image-2 · 未验证连接</small></span><span class="provider-dot"></span></button>
+            <button class="provider-row" data-provider="video"><span class="provider-logo video-logo">▸</span><span><strong>视频生成</strong><small>Runway · Pika · Luma</small></span><span class="provider-dot dim"></span></button>
+          </div>
+
+          <div class="panel-section activity-section">
+            <div class="section-label">本地审查记录 <span>↗</span></div>
+            <div class="activity-item"><span class="activity-time">—</span><span>尚未运行本地审查</span></div>
+          </div>
+
+          <div class="health-card">
+            <div class="health-top"><span>本地审查</span><span class="health-label">待检查</span></div>
+            <div class="health-value">— <span>/ 100</span></div>
+            <div class="health-meta">运行后显示本地规则检查结果</div>
+            <div class="health-bar"><span></span></div>
+            <button id="auditButton" class="health-link">运行只读审查 <span>→</span></button>
+          </div>
+        </aside>
+      </div>
+
+      <div class="presentation-overlay" id="presentationOverlay" aria-hidden="true">
+        <div class="presentation-shell">
+          <header class="presentation-header">
+            <button class="back-button" id="closePresentation"><span>←</span> <span id="presentationBackLabel">返回画布</span></button>
+            <div class="presentation-heading"><div class="eyebrow">HTML-FIRST PRESENTATION</div><h2 id="presentationHeading">校园 AI 服务 · 交互式演示</h2></div>
+            <div class="presentation-actions"><button class="secondary-button" id="presentationPrint">打印 / PDF</button><button class="secondary-button" id="presentationExport">导出 HTML</button><button class="primary-button" id="presentationPreview">演示模式 <span>↗</span></button></div>
+          </header>
+          <div class="presentation-body">
+            <aside class="scene-sidebar">
+              <div class="presentation-section-head"><span>场景 <small id="sceneCount">3</small></span><button class="icon-action" id="addScene" aria-label="新增场景" title="新增场景">＋</button></div>
+              <div class="scene-list" id="sceneList"></div>
+              <div class="scene-actions"><button id="duplicateScene" title="复制当前场景">复制</button><button id="moveSceneUp" title="上移当前场景">↑</button><button id="moveSceneDown" title="下移当前场景">↓</button><button id="deleteScene" title="删除当前场景">删除</button></div><div class="scene-history"><button id="sceneUndo" title="撤销场景操作" aria-label="撤销场景操作">↶</button><button id="sceneRedo" title="重做场景操作" aria-label="重做场景操作">↷</button></div>
+              <div class="notes-card"><div class="eyebrow">SPEAKER NOTES</div><p id="notesPreview">选择场景查看演讲备注。</p></div>
+            </aside>
+            <section class="stage-column">
+              <div class="stage-controls"><div><button class="tool-button" id="previousScene" aria-label="上一场景">←</button><button class="tool-button" id="nextScene" aria-label="下一场景">→</button><span class="scene-position" id="scenePosition">01 / 03</span></div><div class="stage-status"><span class="pulse-dot"></span> 本地预览 · 已保存</div><button class="tool-button" id="stageFullscreen" aria-label="全屏预览">⛶</button></div>
+              <div class="presentation-stage-wrap"><div id="stageCanvas"><iframe id="presentationFrame" title="HTML 演示预览" sandbox="allow-scripts"></iframe></div></div>
+              <div class="timeline-bar"><div class="timeline-track" id="timelineTrack"></div><button class="play-button" id="playPresentation"><span>▶</span> 播放</button></div>
+            </section>
+            <aside class="presentation-editor">
+              <div class="editor-tabs"><button class="editor-tab active" id="visualTab" data-editor-tab="visual">视觉</button><button class="editor-tab" id="codeTab" data-editor-tab="code">HTML / CSS</button></div>
+              <div class="editor-panel visual-editor" id="visualEditor"><label><span id="sceneTitleLabel">场景标题</span><input id="sceneTitle" type="text" /></label><label><span id="sceneNotesLabel">演讲备注</span><textarea id="sceneNotes" rows="4" placeholder="写下这一页的讲解重点..."></textarea></label><div class="scene-motion"><label>场景过渡<select id="sceneTransition"><option value="fade">淡入</option><option value="slide">滑入</option><option value="zoom">缩放</option><option value="none">无</option></select></label><label>停留时长（秒）<input id="sceneDuration" type="number" min="1" max="30" step="0.5" /></label></div><div class="binding-box"><div class="eyebrow">GRAPH BINDING</div><strong>项目数据</strong><label>活跃用户占比<input id="activeUsersMetric" type="number" min="0" max="100" step="0.1" /></label><label>环比增长<input id="growthMetric" type="number" min="-100" max="1000" step="0.1" /></label><label>本周会话<input id="sessionsMetric" type="text" maxlength="30" /></label><label>项目健康度<input id="healthMetric" type="number" min="0" max="100" step="1" /></label><p><code>{{project.title}}</code> · <code>{{metric.activeUsers}}</code> · <code>{{metric.growth}}</code> · <code>{{metric.sessions}}</code> · <code>{{metric.health}}</code></p><button class="secondary-button" id="syncPresentation">刷新预览</button></div></div>
+              <div class="editor-panel code-editor" id="codeEditor" hidden><label>HTML<textarea id="sceneHtml" spellcheck="false"></textarea></label><label>CSS<textarea id="sceneCss" spellcheck="false"></textarea></label></div>
+              <div class="editor-footer"><span><span id="editorSaveState">未修改</span><small id="presentationValidation"></small></span><button class="primary-button" id="saveScene">保存场景</button></div>
+            </aside>
+          </div>
+        </div>
+      </div>
+
+      <div class="config-overlay" id="configOverlay" aria-hidden="true">
+        <div class="config-modal" role="dialog" aria-modal="true" aria-labelledby="configTitle">
+          <div class="config-header"><div><div class="eyebrow">MODEL CONTROL PLANE</div><h2 id="configTitle">模型配置</h2><p id="configSubtitle">为不同工作模式选择模型和供应商。</p></div><button class="modal-close" id="configClose" aria-label="关闭模型配置">×</button></div>
+          <div class="config-body">
+            <div class="config-summary"><span class="config-summary-dot"></span><div><strong id="configConnection">配置已保存</strong><small>配置保存在当前浏览器，生成服务尚未接入。</small></div><span class="connection-state">未验证连接</span></div>
+            <div class="config-grid">
+              <label><span>推理与 Agent</span><select id="reasoningModel"><option value="claude-opus">Claude Opus 5.5</option><option value="claude-sonnet">Claude Sonnet</option></select></label>
+              <label><span>图片生成</span><select id="imageModel"><option value="gpt-image-2">gpt-image-2</option></select></label>
+              <label><span>视频生成</span><select id="videoModel"><option value="runway">Runway</option><option value="pika">Pika</option><option value="luma">Luma</option></select></label>
+              <label><span>默认路由</span><select id="routeMode"><option value="auto">自动选择</option><option value="manual">按工作模式固定</option></select></label>
+            </div>
+            <label class="config-field"><span>图片供应商端点</span><input id="imageEndpoint" type="url" value="https://api.tu-zi.com/coding" readonly /></label>
+            <div class="secret-row"><div><span>API Key</span><small id="keyStatus">已配置 · ****************</small></div><button class="secondary-button" id="keyAction">更换密钥</button></div>
+            <div class="toggle-row"><div><strong>启用外部模型调用</strong><small>关闭后仅允许使用本地预览和已缓存素材。</small></div><button class="toggle active" id="providerToggle" role="switch" aria-checked="true"><span></span></button></div>
+          </div>
+          <div class="config-footer"><span id="configSavedAt">上次保存：刚刚</span><div><button class="secondary-button" id="configCancel">取消</button><button class="primary-button" id="configSave">保存配置</button></div></div>
+        </div>
+      </div>
+
+      <div class="account-overlay" id="accountOverlay" aria-hidden="true">
+        <div class="account-modal" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
+          <div class="account-header"><div><div class="eyebrow">ACCOUNT CONTROL</div><h2 id="accountTitle">账户与成员</h2><p id="accountSubtitle">服务端账户 · 登录状态受服务端管理</p></div><button class="modal-close" id="accountClose" aria-label="关闭账户管理">×</button></div>
+          <div class="account-body" id="accountBody"></div>
+        </div>
+      </div>
+
+      <div class="command-overlay" id="commandOverlay" aria-hidden="true">
+        <div class="command-modal" role="dialog" aria-modal="true" aria-label="命令栏">
+          <div class="command-search"><span>⌘</span><input id="commandInput" placeholder="搜索操作、节点或 Agent..." /><kbd>ESC</kbd></div>
+          <div class="command-list">
+            <button data-command="创建新节点"><span class="command-symbol">＋</span><span>创建新节点</span><kbd>N</kbd></button>
+            <button data-command="运行项目"><span class="command-symbol">▶</span><span>运行项目</span><kbd>R</kbd></button>
+            <button data-command="请求 Inspector 审查"><span class="command-symbol">⌁</span><span>请求 Inspector 审查</span><kbd>I</kbd></button>
+            <button data-command="打开项目历史"><span class="command-symbol">↺</span><span>打开项目历史</span><kbd>H</kbd></button>
+          </div>
+          <div class="command-footer"><span>导航 <kbd>↑</kbd><kbd>↓</kbd></span><span>确认 <kbd>↵</kbd></span><span>关闭 <kbd>Esc</kbd></span></div>
+        </div>
+      </div>
+
+      <div class="toast" id="toast" role="status"><span class="toast-icon">✓</span><span id="toastText">已保存到项目图谱</span></div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
